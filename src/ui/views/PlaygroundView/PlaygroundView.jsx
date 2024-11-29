@@ -20,6 +20,7 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
   var [currentScore, setCurrentScore] = useState(0);
 
   var [selected, setIsSelected] = useState(null);
+  var [pairFound, setPairFound] = useState(null);
   var [error, setError] = useState(null);
   var [accepted, setAccepted] = useState(null);
   var [closed, setClosed] = useState(0);
@@ -31,6 +32,9 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
         {Array.from({ length: side * side }).map((_, index) => (
           <div
             onClick={() => {
+              if (pairFound != null) {
+                return;
+              }
               if (index == selected) {
                 setIsSelected(null);
               } else if (selected != null) {
@@ -44,6 +48,7 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
                 if (current == selected2) {
                   setCorrectCount(correctCount + 1);
                   setAccepted(index);
+                  setPairFound(true);
                   setTimeout(() => {
                     setShownItems((prev) => {
                       const updated = [...prev];
@@ -52,6 +57,7 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
                       return updated;
                     });
                     setClosed(closed + 2);
+                    setPairFound(null);
                     setIsSelected(null);
                     setAccepted(null);
                     setError(null);
