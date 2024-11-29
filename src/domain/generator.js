@@ -25,8 +25,9 @@ async function generatePlacement(difficulty) {
 
   const slicedCars = cars_icons.slice(0, difficulty);
   const cards = shuffle([...slicedCars, ...slicedCars]);
+  const matrix = [cards.slice(0, difficulty), cards.slice(-difficulty)]
 
-  return cards;
+  return matrix;
 }
 
 // Пример использования
