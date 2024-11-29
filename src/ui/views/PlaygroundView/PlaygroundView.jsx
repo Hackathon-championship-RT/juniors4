@@ -8,6 +8,7 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
   const [side, setSide] = useState(generatedPlayground[0].length);
   const [timer, setTimer] = useState(0);
   const [intervalId, setIntervalId] = useState(null);
+  const [timerIsRed, setTimerIsRed] = useState(false);
 
   useEffect(() => {
     const id = setInterval(
@@ -29,7 +30,7 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
   const screenWidth = window.innerWidth;
 
   const timerHeight = 60;
-  const playgroundSize = Math.min(screenWidth, screenHeight - timerHeight);
+  const playgroundSize = Math.min(screenWidth, screenHeight - timerHeight - 60);
 
   const gridStyle = {
     display: "grid",
@@ -60,11 +61,16 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: "10px",
+        padding: "20px",
       }}
     >
       <div className="timer">
-        <h2 className="time">{timer.toFixed(1)}</h2>
+        <h2
+          className="time"
+          style={{ color: timerIsRed ? "var(--red)" : "var(--text-color)" }}
+        >
+          {timer.toFixed(1)}
+        </h2>
       </div>
 
       <div className="playground-container" style={gridStyle}>
@@ -128,6 +134,11 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
                   }, 300);
                 } else {
                   setIncorrectCount(incorrectCount + 1);
+                  setTimer(timer + 1);
+                  setTimerIsRed(true);
+                  setTimeout(() => {
+                    setTimerIsRed(false);
+                  }, 300);
                   setError(index);
                   setTimeout(() => {
                     setAccepted(null);
