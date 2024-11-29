@@ -11,3 +11,14 @@ export function calculateScore(correctAnswers, wrongAnswers) {
 
   return totalScore;
 }
+
+export function updateMaxScore(score) {
+  const currentMaxScore = getMaxScore();
+  if (score > currentMaxScore) {
+    localStorage.setItem("maxScore", score);
+  }
+}
+
+export function getMaxScore() {
+  return parseInt(localStorage.getItem("maxScore")) || 0;
+}

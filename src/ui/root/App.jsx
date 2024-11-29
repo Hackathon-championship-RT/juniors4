@@ -1,5 +1,6 @@
 import "./App.css";
 import { generatePlacement } from "../../domain/generator";
+import { updateMaxScore } from "../../domain/calculate";
 import MenuView from "../views/MenuView/MenuView";
 import PlaygroundView from "../views/PlaygroundView/PlaygroundView";
 import FinishView from "../views/finishView/FinishView";
@@ -29,6 +30,7 @@ export default function App() {
         <PlaygroundView
           generatedPlayground={generatedPlayground}
           onFinish={(score) => {
+            updateMaxScore(score);
             setFinalScore(score);
             setStage(2);
           }}
@@ -37,7 +39,7 @@ export default function App() {
         <FinishView
           score={finalScore}
           restart={() => {
-            setGneratedPlayground(generatePlacement(2));
+            setGneratedPlayground(generatePlacement(difficulty * 2));
             setStage(1);
           }}
           openMenu={() => {

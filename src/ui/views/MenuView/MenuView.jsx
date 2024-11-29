@@ -1,14 +1,15 @@
 import { useState } from "react";
 import "./MenuView.css";
+import { getMaxScore } from "../../../domain/calculate";
 
 export default function MenuView({ onDifficultyChange, onStart }) {
-  const [maxScore, setMaxScore] = useState(1000);
+  const maxScore = getMaxScore();
   const [difficulty, setDifficulty] = useState(5);
 
   return (
     <div className="menu-container">
       <div className="max-score-block">
-        <span className="max-score-title">МАКСИМАЛЬНЫЙ СЧЕТ</span>
+        <span className="max-score-title">ЛУЧШИЙ РЕЗУЛЬТАТ</span>
         <span className="max-score">{maxScore}</span>
       </div>
 

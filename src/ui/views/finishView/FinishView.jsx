@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./FinishView.css";
+import { getMaxScore } from "../../../domain/calculate";
 
 export default function FinishView({ score, restart, openMenu }) {
-  const [maxScore, setMaxScore] = useState(1000);
+  const maxScore = getMaxScore();
   return (
     <div className="finish-container">
       <div className="max-score-block">
