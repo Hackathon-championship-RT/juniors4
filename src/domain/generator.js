@@ -1,36 +1,24 @@
+import cards from "../../public/config/cards_config.json" assert { type: "json" };
+
 function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-async function fetchIcons() {
-  try {
-    const response = await fetch('/config/icons.json');
-    if (!response.ok) {
-      throw new Error('Ошибка при загрузке JSON файла');
-    }
-    const icons = await response.json();
-    return icons;
-  } catch (error) {
-    console.error('Ошибка:', error);
-    return [];
-  }
-}
-
-async function generatePlacement(difficulty) {
-  const cars_icons = await fetchIcons();
-
-  if (cars_icons.length === 0) {
+export function generatePlacement(difficulty) {
+  if (cards.length === 0) {
     return [];
   }
 
-  const slicedCars = cars_icons.slice(0, difficulty);
-  const cards = shuffle([...slicedCars, ...slicedCars]);
-  const matrix = [cards.slice(0, difficulty), cards.slice(-difficulty)]
+  const cardIndexes = Array.from({ length: cards.length }, (_, index) => index);
+
+  const slicedIndexes = cardIndexes.slice(0, difficulty);
+
+  const shuffledIndexes = shuffle([...slicedIndexes, ...slicedIndexes]);
+
+  const matrix = [];
+  for (let i = 0; i < shuffledIndexes.length; i += difficulty) {
+    matrix.push(shuffledIndexes.slice(i, i + difficulty));
+  }
 
   return matrix;
 }
-
-// Пример использования
-generatePlacement(4).then(cards => {
-  console.log(cards);
-});

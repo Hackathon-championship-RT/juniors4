@@ -1,14 +1,34 @@
 .card-root {
-  padding: 30;
   height: 50px;
   width: 50px;
-  color: red;
+  background-color: var(--secondary-background-color);
   align-items: center;
   justify-content: center;
+
+  transition: 0.5s;
+  
+  padding: 30px;
+  border-radius: 20px;
 }
 
 .card-logo-img {
   height: 50px;
   width: 50px;
-  color: white;
+}
+
+.card-root.selected {
+  background-color: var(--purple);
+}
+
+.card-root.error {
+  background-color: var(--red);
+}
+
+.card-root.accepted {
+  background-color: var(--green);
+}
+
+.card-root.hidden {
+  opacity: 0;
+  visibility: hidden; 
 }
