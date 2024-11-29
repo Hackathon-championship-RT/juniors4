@@ -4,7 +4,7 @@ import { updateMinScore } from "../../domain/calculate";
 import MenuView from "../views/MenuView/MenuView";
 import PlaygroundView from "../views/PlaygroundView/PlaygroundView";
 import FinishView from "../views/finishView/FinishView";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
   const [difficulty, setDifficulty] = useState(5);

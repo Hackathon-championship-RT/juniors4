@@ -20,19 +20,32 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
     return () => clearInterval(id);
   }, []);
 
-  useEffect(() => {
-    if (closed === side * side * generatedPlayground.length) {
-      clearInterval(intervalId);
-    }
-  }, [closed, side, generatedPlayground.length, intervalId]);
-
-  const screenHeight = window.innerHeight;
-  const screenWidth = window.innerWidth;
+  const [screenDimensions, setScreenDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   const timerHeight = 60;
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const screenHeight = screenDimensions.height;
+  const screenWidth = screenDimensions.width;
+
   const playgroundSize = Math.min(
-    screenWidth - 50,
-    screenHeight - timerHeight - 60
+    screenWidth - 100,
+    screenHeight - timerHeight - 110
   );
 
   const gridStyle = {

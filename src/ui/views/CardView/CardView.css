@@ -9,11 +9,15 @@
   transition: 0.5s;
 
   border-radius:  20%;
+  pointer-events: none; 
 }
 
 .card-logo-img {
   max-width: 70%;
   max-height: 70%;
+  pointer-events: none;
+  user-select: none; 
+  user-drag: none; 
 }
 
 .card-root.selected {
