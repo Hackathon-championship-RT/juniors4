@@ -1,11 +1,12 @@
 import "./PlaygroundView.css";
 import CardView from "../CardView/CardView";
 import cards from "../../../../public/config/cards_config.json";
+import { calculateScore } from "../../../domain/calculate";
 import { useState } from "react";
 
-export default function PlaygroundView({ generatedPlayground }) {
-  const [side, setSide] = useState(generatedPlayground.length);
+export default function PlaygroundView({ generatedPlayground, onFinish }) {
   console.log(generatedPlayground);
+  const [side, setSide] = useState(generatedPlayground.length);
 
   const gridStyle = {
     display: "grid",
@@ -14,12 +15,15 @@ export default function PlaygroundView({ generatedPlayground }) {
     gap: "10px",
   };
 
+  var [incorrectCount, setIncorrectCount] = useState(0);
+  var [correctCount, setCorrectCount] = useState(0);
+  var [currentScore, setCurrentScore] = useState(0);
+
   var [selected, setIsSelected] = useState(null);
   var [error, setError] = useState(null);
   var [accepted, setAccepted] = useState(null);
-  const [shownItems, setShownItems] = useState(
-    Array(side * side).fill(true) // Изначально все элементы скрыты
-  );
+  var [closed, setClosed] = useState(0);
+  const [shownItems, setShownItems] = useState(Array(side * side).fill(true));
 
   return (
     <>
@@ -38,20 +42,26 @@ export default function PlaygroundView({ generatedPlayground }) {
                   ];
 
                 if (current == selected2) {
+                  setCorrectCount(correctCount + 1);
                   setAccepted(index);
                   setTimeout(() => {
                     setShownItems((prev) => {
                       const updated = [...prev];
                       updated[index] = false;
                       updated[selected] = false;
-                      console.log(updated);
                       return updated;
                     });
+                    setClosed(closed + 2);
                     setIsSelected(null);
                     setAccepted(null);
                     setError(null);
+                    console.log(closed);
+                    if (closed == side * side - 2) {
+                      onFinish(currentScore);
+                    }
                   }, 300);
                 } else {
+                  setIncorrectCount(incorrectCount + 1);
                   setError(index);
                   setTimeout(() => {
                     setAccepted(null);
@@ -61,6 +71,7 @@ export default function PlaygroundView({ generatedPlayground }) {
               } else {
                 setIsSelected(index);
               }
+              setCurrentScore(calculateScore(correctCount, incorrectCount));
             }}
           >
             <CardView

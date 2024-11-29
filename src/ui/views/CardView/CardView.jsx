@@ -8,8 +8,6 @@ export default function CardView({
   isAccepted,
   showItem,
 }) {
-  console.log(card);
-  console.log(showItem);
   return (
     <>
       <div

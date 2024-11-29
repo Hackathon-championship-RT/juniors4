@@ -2,8 +2,8 @@ import { useState } from "react";
 import "./MenuView.css";
 
 export default function MenuView({ onDifficultyChange, onStart }) {
-  const [maxScore, setMaxScore] = useState(0);
-  const [difficulty, setDifficulty] = useState(1);
+  const [maxScore, setMaxScore] = useState(1000);
+  const [difficulty, setDifficulty] = useState(5);
 
   return (
     <div className="menu-container">
