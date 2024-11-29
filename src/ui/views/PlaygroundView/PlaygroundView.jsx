@@ -35,7 +35,7 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
         {Array.from({ length: side * side }).map((_, index) => (
           <div
             onClick={() => {
-              if (pairFound != null) {
+              if (pairFound != null || !shownItems[index]) {
                 return;
               }
               if (index == selected) {
