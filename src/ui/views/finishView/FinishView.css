@@ -5,6 +5,8 @@
   justify-content: space-between;
   align-items: center;
   height: calc(100vh - 40px);
+  width: calc(100vw - 40px);
+  max-width: 400px;
   padding: 20px;
 }
 
@@ -38,7 +40,6 @@
 }
 
 .again-button-container {
-  width: calc(100% - 40px);
   padding: 20px;
   background-color: var(--purple);
   border-radius: 20px;
@@ -46,7 +47,6 @@
 
 
 .menu-button-container {
-  width: calc(100% - 40px);
   padding: 20px;
   background-color: var(--secondary-background-color);
   border-radius: 20px;

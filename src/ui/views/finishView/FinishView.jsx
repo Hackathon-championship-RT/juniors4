@@ -12,7 +12,7 @@ export default function FinishView({ score, restart, openMenu }) {
       </div>
 
       <div className="score-block">
-        <span className="score-title">СЧЕТ</span>
+        <span className="score-title">Результат</span>
         <span className="score">{score}</span>
       </div>
 

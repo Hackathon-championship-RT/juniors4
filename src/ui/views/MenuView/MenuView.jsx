@@ -16,7 +16,7 @@ export default function MenuView({ onDifficultyChange, onStart }) {
         <span className="max-score">{minScore}</span>
       </div>
 
-      <div className="difficulty-container">
+      <div className="difficulty-container" style={{ width: "100%" }}>
         <label htmlFor="difficulty" className="difficulty-label">
           Уровень сложности
         </label>
@@ -40,7 +40,7 @@ export default function MenuView({ onDifficultyChange, onStart }) {
       </div>
 
       <div className="start-button-container" onClick={() => onStart()}>
-        <span className="start-button-text">START</span>
+        <span className="start-button-text">Старт</span>
       </div>
     </div>
   );

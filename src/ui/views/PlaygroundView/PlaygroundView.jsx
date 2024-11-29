@@ -30,7 +30,10 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
   const screenWidth = window.innerWidth;
 
   const timerHeight = 60;
-  const playgroundSize = Math.min(screenWidth, screenHeight - timerHeight - 60);
+  const playgroundSize = Math.min(
+    screenWidth - 50,
+    screenHeight - timerHeight - 60
+  );
 
   const gridStyle = {
     display: "grid",
