@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function PlaygroundView({ generatedPlayground, onFinish }) {
   console.log(generatedPlayground);
-  const [side, setSide] = useState(generatedPlayground.length);
+  const [side, setSide] = useState(generatedPlayground[0].length);
 
   const gridStyle = {
     display: "grid",
@@ -24,6 +24,9 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
   var [error, setError] = useState(null);
   var [accepted, setAccepted] = useState(null);
   var [closed, setClosed] = useState(0);
+  const [positions, setPositions] = useState(
+    Array(side * side).fill(generatedPlayground.length - 1)
+  );
   const [shownItems, setShownItems] = useState(Array(side * side).fill(true));
 
   return (
@@ -39,21 +42,39 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
                 setIsSelected(null);
               } else if (selected != null) {
                 const current =
-                  generatedPlayground[Math.floor(index / side)][index % side];
+                  generatedPlayground[positions[index]][
+                    Math.floor(index / side)
+                  ][index % side];
                 const selected2 =
-                  generatedPlayground[Math.floor(selected / side)][
-                    selected % side
-                  ];
+                  generatedPlayground[positions[selected]][
+                    Math.floor(selected / side)
+                  ][selected % side];
 
                 if (current == selected2) {
                   setCorrectCount(correctCount + 1);
                   setAccepted(index);
                   setPairFound(true);
                   setTimeout(() => {
-                    setShownItems((prev) => {
+                    setPositions((prev) => {
                       const updated = [...prev];
-                      updated[index] = false;
-                      updated[selected] = false;
+                      if (updated[index] > 0) {
+                        updated[index]--;
+                      } else {
+                        setShownItems((prev) => {
+                          const updated = [...prev];
+                          updated[index] = false;
+                          return updated;
+                        });
+                      }
+                      if (updated[selected] > 0) {
+                        updated[selected]--;
+                      } else {
+                        setShownItems((prev) => {
+                          const updated = [...prev];
+                          updated[selected] = false;
+                          return updated;
+                        });
+                      }
                       return updated;
                     });
                     setClosed(closed + 2);
@@ -80,11 +101,16 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
               setCurrentScore(calculateScore(correctCount, incorrectCount));
             }}
           >
+            {() => {
+              console.log("pos " + positions[index]);
+            }}
             <CardView
               key={index}
               card={
                 cards[
-                  generatedPlayground[Math.floor(index / side)][index % side]
+                  generatedPlayground[positions[index]][
+                    Math.floor(index / side)
+                  ][index % side]
                 ]
               }
               isSelected={selected == index}
