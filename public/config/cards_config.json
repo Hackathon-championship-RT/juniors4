@@ -1,6 +1,90 @@
 [
-  {"imagePath": "/icons/kia.svg"},
-  {"imagePath": "/icons/honda.svg"},
-  {"imagePath": "/icons/lamborghini.svg"},
-  {"imagePath": "/icons/mercedes.svg"}
+  {
+    "imagePath": "/icons/kia.svg",
+    "history": "Компания Kia была основана в 1944 году в Южной Корее и с тех пор зарекомендовала себя как производитель доступных и надежных автомобилей. В последние годы компания значительно улучшила качество своей продукции и предлагает широкий выбор автомобилей, от малых моделей до кроссоверов.",
+    "founder": {
+      "name": "Ким Чхоль-хо",
+      "image": "/images/kia/kia.jpg"
+    },
+    "cars": [
+      {
+        "name": "Kia Sportage",
+        "image": "/images/kia/KiaSportage.jpg"
+      },
+      {
+        "name": "Kia Sorento",
+        "image": "/images/kia/KiaSorento.jpg"
+      },
+      {
+        "name": "Kia Stinger",
+        "image": "/images/kia/KiaStinger.jpg"
+      }
+    ]
+  },
+  {
+    "imagePath": "/icons/honda.svg",
+    "history": "Honda была основана в 1948 году в Японии и изначально специализировалась на производстве мотоциклов. С тех пор компания расширила производство автомобилей и стала одним из крупнейших производителей автомобилей и мотоциклов в мире. Honda известна своими инновациями и надежностью.",
+    "founder": {
+      "name": "Соитиро Хонда",
+      "image": "/images/honda/honda.jpg"
+    },
+    "cars": [
+      {
+        "name": "Honda Civic",
+        "image": "/images/honda/HondaCivic.jpg"
+      },
+      {
+        "name": "Honda Accord",
+        "image": "/images/honda/HondaAccord.png"
+      },
+      {
+        "name": "Honda CR-V",
+        "image": "/images/honda/HondaCR-V.jpg"
+      }
+    ]
+  },
+  {
+    "imagePath": "/icons/lamborghini.svg",
+    "history": "Lamborghini была основана в 1963 году в Италии Ферруччо Ламборгини. Бренд известен своими высокоскоростными и роскошными спортивными автомобилями. Lamborghini всегда ассоциируется с выдающимися дизайнерскими решениями и высокой производительностью.",
+    "founder": {
+      "name": "Ферруччо Ламборгини",
+      "image": "/images/lamborgini/lamborgini.jpg"
+    },
+    "cars": [
+      {
+        "name": "Lamborghini Aventador",
+        "image": "/images/lamborgini/LamborghiniAventador.jpg"
+      },
+      {
+        "name": "Lamborghini Huracán",
+        "image": "images/lamborgini/LamborghiniHuracán.jpg"
+      },
+      {
+        "name": "Lamborghini Urus",
+        "image": "/images/lamborgini/LamborghiniUrus.jpg"
+      }
+    ]
+  },
+  {
+    "imagePath": "/icons/mercedes.svg",
+    "history": "Mercedes-Benz был основан в 1926 году и является одним из самых известных брендов в мире в сегменте роскошных автомобилей. Компания с момента своего основания прославилась своим качеством, инновационными технологиями и престижем. Mercedes-Benz продолжает производить автомобили премиум-класса по всему миру.",
+    "founder": {
+      "name": "Карл Бенц",
+      "image": "/images/mercedes/Mercedes.jpg"
+    },
+    "cars": [
+      {
+        "name": "Mercedes-Benz S-Class",
+        "image": "/images/mercedes/Mercedes-BenzS-Class.jpg"
+      },
+      {
+        "name": "Mercedes-Benz E-Class",
+        "image": "/images/mercedes/Mercedes-BenzE-Class.jpg"
+      },
+      {
+        "name": "Mercedes-Benz GLC",
+        "image": "images/mersedes/Mercedes-BenzGLC.jpg"
+      }
+    ]
+  }
 ]
