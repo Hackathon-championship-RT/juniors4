@@ -83,7 +83,10 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
                     setAccepted(null);
                     setError(null);
                     console.log(closed);
-                    if (closed == side * side - 2) {
+                    if (
+                      closed ==
+                      side * side * generatedPlayground.length - 2
+                    ) {
                       onFinish(currentScore);
                     }
                   }, 300);
