@@ -1,0 +1,14 @@
+.card-root {
+  padding: 30;
+  height: 50px;
+  width: 50px;
+  color: red;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-logo-img {
+  height: 50px;
+  width: 50px;
+  color: white;
+}
