@@ -30,6 +30,6 @@ async function generatePlacement(difficulty) {
 }
 
 // Пример использования
-generatePlacement(0, 4).then(cards => {
+generatePlacement(4).then(cards => {
   console.log(cards);
 });
