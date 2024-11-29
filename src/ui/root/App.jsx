@@ -1,6 +1,6 @@
 import "./App.css";
 import { generatePlacement } from "../../domain/generator";
-import { updateMaxScore } from "../../domain/calculate";
+import { updateMinScore } from "../../domain/calculate";
 import MenuView from "../views/MenuView/MenuView";
 import PlaygroundView from "../views/PlaygroundView/PlaygroundView";
 import FinishView from "../views/finishView/FinishView";
@@ -30,7 +30,7 @@ export default function App() {
         <PlaygroundView
           generatedPlayground={generatedPlayground}
           onFinish={(score) => {
-            updateMaxScore(score);
+            updateMinScore(score);
             setFinalScore(score);
             setStage(2);
           }}

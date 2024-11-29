@@ -1,16 +1,19 @@
 import { useState } from "react";
 import "./MenuView.css";
-import { getMaxScore } from "../../../domain/calculate";
+import { getMinScore } from "../../../domain/calculate";
 
 export default function MenuView({ onDifficultyChange, onStart }) {
-  const maxScore = getMaxScore();
+  const minScore = getMinScore();
   const [difficulty, setDifficulty] = useState(5);
 
   return (
     <div className="menu-container">
-      <div className="max-score-block">
-        <span className="max-score-title">ЛУЧШИЙ РЕЗУЛЬТАТ</span>
-        <span className="max-score">{maxScore}</span>
+      <div
+        className="max-score-block"
+        style={{ visibility: minScore != null ? "visible" : "hidden" }}
+      >
+        <span className="max-score-title">МИНИМАЛЬНОЕ ВРЕМЯ</span>
+        <span className="max-score">{minScore}</span>
       </div>
 
       <div className="difficulty-container">

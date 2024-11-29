@@ -12,13 +12,14 @@ export function calculateScore(correctAnswers, wrongAnswers) {
   return totalScore;
 }
 
-export function updateMaxScore(score) {
-  const currentMaxScore = getMaxScore();
-  if (score > currentMaxScore) {
-    localStorage.setItem("maxScore", score);
+export function updateMinScore(score) {
+  const currentMinScore = getMinScore();
+  if (currentMinScore === null || score < currentMinScore) {
+    localStorage.setItem("minScore", score.toString());
   }
 }
 
-export function getMaxScore() {
-  return parseInt(localStorage.getItem("maxScore")) || 0;
+export function getMinScore() {
+  const storedScore = localStorage.getItem("minScore");
+  return storedScore !== null ? parseFloat(storedScore) : null;
 }

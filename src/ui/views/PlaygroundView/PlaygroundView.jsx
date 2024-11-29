@@ -2,17 +2,42 @@ import "./PlaygroundView.css";
 import CardView from "../CardView/CardView";
 import cards from "../../../../public/config/cards_config.json";
 import { calculateScore } from "../../../domain/calculate";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function PlaygroundView({ generatedPlayground, onFinish }) {
-  console.log(generatedPlayground);
   const [side, setSide] = useState(generatedPlayground[0].length);
+  const [timer, setTimer] = useState(0);
+  const [intervalId, setIntervalId] = useState(null);
+
+  useEffect(() => {
+    const id = setInterval(
+      () => setTimer((prev) => Math.round((prev + 0.1) * 10) / 10),
+      100
+    );
+    setIntervalId(id);
+
+    return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    if (closed === side * side * generatedPlayground.length) {
+      clearInterval(intervalId);
+    }
+  }, [closed, side, generatedPlayground.length, intervalId]);
+
+  const screenHeight = window.innerHeight;
+  const screenWidth = window.innerWidth;
+
+  const timerHeight = 60;
+  const playgroundSize = Math.min(screenWidth, screenHeight - timerHeight);
 
   const gridStyle = {
     display: "grid",
     gridTemplateColumns: `repeat(${side}, 1fr)`,
     gridTemplateRows: `repeat(${side}, 1fr)`,
     gap: "10px",
+    width: `${playgroundSize}px`,
+    height: `${playgroundSize}px`,
   };
 
   var [incorrectCount, setIncorrectCount] = useState(0);
@@ -30,15 +55,27 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
   const [shownItems, setShownItems] = useState(Array(side * side).fill(true));
 
   return (
-    <>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "10px",
+      }}
+    >
+      <div className="timer">
+        <h2 className="time">{timer.toFixed(1)}</h2>
+      </div>
+
       <div className="playground-container" style={gridStyle}>
         {Array.from({ length: side * side }).map((_, index) => (
           <div
+            key={index}
             onClick={() => {
               if (pairFound != null || !shownItems[index]) {
                 return;
               }
-              if (index == selected) {
+              if (index === selected) {
                 setIsSelected(null);
               } else if (selected != null) {
                 const current =
@@ -50,7 +87,7 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
                     Math.floor(selected / side)
                   ][selected % side];
 
-                if (current == selected2) {
+                if (current === selected2) {
                   setCorrectCount(correctCount + 1);
                   setAccepted(index);
                   setPairFound(true);
@@ -82,12 +119,11 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
                     setIsSelected(null);
                     setAccepted(null);
                     setError(null);
-                    console.log(closed);
                     if (
-                      closed ==
+                      closed ===
                       side * side * generatedPlayground.length - 2
                     ) {
-                      onFinish(currentScore);
+                      onFinish(timer);
                     }
                   }, 300);
                 } else {
@@ -104,11 +140,7 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
               setCurrentScore(calculateScore(correctCount, incorrectCount));
             }}
           >
-            {() => {
-              console.log("pos " + positions[index]);
-            }}
             <CardView
-              key={index}
               card={
                 cards[
                   generatedPlayground[positions[index]][
@@ -116,14 +148,14 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
                   ][index % side]
                 ]
               }
-              isSelected={selected == index}
-              isError={error == index}
-              isAccepted={accepted == index}
+              isSelected={selected === index}
+              isError={error === index}
+              isAccepted={accepted === index}
               showItem={shownItems[index]}
             />
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
