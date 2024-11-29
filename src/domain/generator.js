@@ -5,14 +5,16 @@ function shuffle(array) {
 }
 
 function generateGrid(array) {
-  const length = array.length;
-  let rows = Math.floor(Math.sqrt(length));
-  let columns = length / rows;
+  const shuffledArray = shuffle(array);
+
+  const length = shuffledArray.length;
+  const rows = Math.sqrt(length);
+  const columns = rows;
 
   // Создание двумерного массива
   const grid = [];
   for (let i = 0; i < rows; i++) {
-    grid.push(array.slice(i * columns, (i + 1) * columns));
+    grid.push(shuffledArray.slice(i * columns, (i + 1) * columns));
   }
 
   return grid;
@@ -31,8 +33,12 @@ export function generatePlacement(difficulty) {
   );
 
   const duplicatedIndexes = [...cardIndexes, ...cardIndexes];
-  const shuffledIndexes = shuffle(duplicatedIndexes);
 
-  console.log(generateGrid(shuffledIndexes));
-  return generateGrid(shuffledIndexes);
+  let fullGrid = [];
+  for (let i = 0; i < 3; i++) {
+    fullGrid.push(generateGrid(duplicatedIndexes));
+  }
+  console.log(fullGrid);
+
+  return fullGrid;
 }
