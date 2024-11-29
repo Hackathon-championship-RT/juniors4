@@ -4,21 +4,10 @@ function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-
 function generateGrid(array) {
   const length = array.length;
-
-  if (length % 2 !== 0) {
-    throw new Error("Массив должен содержать четное количество элементов.");
-  }
-
   let rows = Math.floor(Math.sqrt(length));
   let columns = length / rows;
-
-  while (!Number.isInteger(columns)) {
-    rows--;
-    columns = length / rows;
-  }
 
   // Создание двумерного массива
   const grid = [];
@@ -30,15 +19,20 @@ function generateGrid(array) {
 }
 
 export function generatePlacement(difficulty) {
-  if (cards.length === 0) {
-    return [];
+  const totalCards = difficulty * difficulty;
+
+  if (totalCards % 2 !== 0) {
+    throw new Error("Общее количество элементов должно быть четным.");
   }
 
-  const cardIndexes = Array.from({ length: cards.length }, (_, index) => index);
+  const cardIndexes = Array.from(
+    { length: totalCards / 2 },
+    (_, index) => index % cards.length
+  );
 
-  const slicedIndexes = cardIndexes.slice(0, difficulty / 2);
+  const duplicatedIndexes = [...cardIndexes, ...cardIndexes];
+  const shuffledIndexes = shuffle(duplicatedIndexes);
 
-  const shuffledIndexes = shuffle([...slicedIndexes, ...slicedIndexes]);
-
+  console.log(generateGrid(shuffledIndexes));
   return generateGrid(shuffledIndexes);
 }

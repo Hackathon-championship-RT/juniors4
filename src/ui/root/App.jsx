@@ -8,7 +8,7 @@ export default function App() {
   const [difficulty, setDifficulty] = useState(1);
   const [stage, setStage] = useState(0);
   const [generatedPlayground, setGneratedPlayground] = useState(
-    generatePlacement(2)
+    generatePlacement(4)
   );
 
   return (
