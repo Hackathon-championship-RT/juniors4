@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./FinishView.css";
 import { getMinScore } from "../../../domain/calculate";
+import { submitLeaderboardData } from "../../../data/source/network/apiService";
 
 export default function FinishView({ score, restart, openMenu, level }) {
   const minScore = getMinScore(level);
+
+  useEffect(() => {
+    submitLeaderboardData(score, level);
+  });
+
   return (
     <div className="finish-container">
       <div className="max-score-block">
