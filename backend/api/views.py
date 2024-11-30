@@ -57,7 +57,7 @@ def put_data(request):
         try:
             leaderboard = api.models.LeaderboardModel.objects.filter(level=serializer.data["level"]).get(gamer=gamer)
             score_time = serializer.data["score"]
-            if float(leaderboard.score) > float(score_time):
+            if leaderboard.score > score_time:
                 leaderboard.score = serializer.data["score"]
                 leaderboard.save()
         except api.models.LeaderboardModel.DoesNotExist:
