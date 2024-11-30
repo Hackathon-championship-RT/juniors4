@@ -6,7 +6,7 @@
 
 Вы можете протестировать на своем устройстве, развернув приложение локально или перейдя по ссылке https://mahjong.mustafin.online/
 
-Также доступно видео с демонстрацией работы приложения(Git не позволяет загружать большие файлы) - https://drive.google.com/file/d/14uVChQroixnNoOgig4xHAvA5FKykSKIn/view?usp=sharing
+Видео с демонстрацией работы приложения доступно в корне проекта и по ссылке - https://drive.google.com/file/d/1sxqF9C4BUoC5E4Eb_Uy0t5W6LEd2jlpw/view?usp=sharing
 
 ## Инструкция по запуску React
 
