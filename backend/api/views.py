@@ -78,6 +78,9 @@ def put_data(request):
 def get_top_scores(request, level):
     top_scores = api.models.LeaderboardModel.objects.filter(level=level) \
         .order_by('score')[:10]
+    for record in top_scores:
+        record.username = record.gamer.username if record.gamer.exists() else "Unknown"
+        record.save()
 
     serializer = api.serializers.LeaderboardSerializer(top_scores, many=True)
     return rest_framework.response.Response(serializer.data)
