@@ -9,16 +9,22 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
   const [timer, setTimer] = useState(0);
   const [intervalId, setIntervalId] = useState(null);
   const [timerIsRed, setTimerIsRed] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [showModalAbout, setShowModalAbout] = useState(0);
+  const [modalSteps, setModalSteps] = useState(Array(cards.length).fill(0));
+  const [modalType, setModalType] = useState(0);
+  const [eduMode, setEduMode] = useState(false);
 
   useEffect(() => {
-    const id = setInterval(
-      () => setTimer((prev) => Math.round((prev + 0.1) * 10) / 10),
-      100
-    );
-    setIntervalId(id);
+    const id = setInterval(() => {
+      if (!showModal) {
+        setTimer((prev) => Math.round((prev + 0.1) * 10) / 10);
+      }
+    }, 100);
 
+    setIntervalId(id);
     return () => clearInterval(id);
-  }, []);
+  }, [showModal]);
 
   const [screenDimensions, setScreenDimensions] = useState({
     width: window.innerWidth,
@@ -45,7 +51,7 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
 
   const playgroundSize = Math.min(
     screenWidth - 100,
-    screenHeight - timerHeight - 110
+    screenHeight - timerHeight - 140
   );
 
   const gridStyle = {
@@ -80,6 +86,82 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
         padding: "20px",
       }}
     >
+      {showModal && (
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="modal-window" onClick={() => setShowModal(false)}>
+            {modalType === 0 ? (
+              <div>
+                <h3>История бренда</h3>
+                <span>{cards[showModalAbout].history}</span>
+              </div>
+            ) : modalType === 2 ? (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <h3>Основатель {cards[showModalAbout].name}</h3>
+                <img
+                  src={cards[showModalAbout].founder.image}
+                  height={200}
+                  width={150}
+                  style={{
+                    objectFit: "cover",
+                  }}
+                />
+                <span>{cards[showModalAbout].founder.name}</span>
+              </div>
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <h3>Автомобили {cards[showModalAbout].name}</h3>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    gap: "10px",
+                  }}
+                >
+                  {cards[showModalAbout].cars.map((item, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        marginBottom: "20px",
+                      }}
+                    >
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        height={200}
+                        width={150}
+                        style={{
+                          objectFit: "cover",
+                        }}
+                      />
+                      <span>{item.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       <div className="timer">
         <h2
           className="time"
@@ -111,6 +193,25 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
 
                 if (current === selected2) {
                   setCorrectCount(correctCount + 1);
+                  if (
+                    eduMode &&
+                    closed < side * side * generatedPlayground.length - 2
+                  ) {
+                    if (
+                      modalSteps[current] == 0 ||
+                      modalSteps[current] == 2 ||
+                      modalSteps[current] == 4
+                    ) {
+                      setShowModalAbout(current);
+                      setModalType(modalSteps[current]);
+                      setShowModal(true);
+                    }
+                    setModalSteps((prev) => {
+                      const updated = [...prev];
+                      updated[current] = updated[current] + 1;
+                      return updated;
+                    });
+                  }
                   setAccepted(index);
                   setPairFound(true);
                   setTimeout(() => {
@@ -182,6 +283,28 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
             />
           </div>
         ))}
+      </div>
+
+      <div
+        style={{
+          marginTop: "20px",
+          height: "30px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <label>
+          <input
+            type="checkbox"
+            checked={eduMode}
+            onChange={() => setEduMode((prev) => !prev)}
+            style={{ verticalAlign: "middle" }}
+          />
+          <span style={{ marginLeft: "8px", verticalAlign: "middle" }}>
+            Образовательный режим
+          </span>
+        </label>
       </div>
     </div>
   );

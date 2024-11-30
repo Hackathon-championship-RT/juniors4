@@ -31,6 +31,7 @@ html, body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --checkbox-color: #955cff;
 }
 
 #root {
@@ -39,6 +40,11 @@ html, body {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
 }
 
 a {
