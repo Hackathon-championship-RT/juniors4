@@ -77,6 +77,26 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
   );
   const [shownItems, setShownItems] = useState(Array(side * side).fill(true));
 
+  const handleCloseModal = () => {
+    const modalOverlay = document.querySelector(".modal-overlay");
+    const modalWindow = document.querySelector(".modal-window");
+
+    if (modalOverlay && modalWindow) {
+      modalOverlay.classList.add("fade-out");
+      modalWindow.classList.add("fade-out");
+      setTimeout(() => setShowModal(false), 300);
+    }
+  };
+
+  useEffect(() => {
+    if (showModal) {
+      // Добавляем класс show для плавного появления
+      const modalOverlay = document.querySelector(".modal-overlay");
+      const modalWindow = document.querySelector(".modal-window");
+      modalOverlay?.classList.add("show");
+    }
+  }, [showModal]);
+
   return (
     <div
       style={{
@@ -87,8 +107,8 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
       }}
     >
       {showModal && (
-        <div className="modal-overlay" onClick={() => setShowModal(false)}>
-          <div className="modal-window" onClick={() => setShowModal(false)}>
+        <div className="modal-overlay" onClick={handleCloseModal}>
+          <div className="modal-window" onClick={(e) => e.stopPropagation()}>
             {modalType === 0 ? (
               <div>
                 <h3>История бренда</h3>
@@ -108,9 +128,7 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
                   src={cards[showModalAbout].founder.image}
                   height={200}
                   width={150}
-                  style={{
-                    objectFit: "cover",
-                  }}
+                  style={{ objectFit: "cover" }}
                 />
                 <span>{cards[showModalAbout].founder.name}</span>
               </div>
@@ -148,9 +166,7 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
                         alt={item.name}
                         height={200}
                         width={150}
-                        style={{
-                          objectFit: "cover",
-                        }}
+                        style={{ objectFit: "cover" }}
                       />
                       <span>{item.name}</span>
                     </div>
