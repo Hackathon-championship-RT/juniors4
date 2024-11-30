@@ -92,21 +92,6 @@
     ]
   },
   {
-    "imagePath": "/icons/atom.png",
-    "name": "Атом",
-    "history": "Бренд \"Атом\" был создан как символ российских инноваций в автомобилестроении, с акцентом на экологичные и современные технологии. Компания разрабатывает как электромобили, так и автомобили на альтернативных источниках энергии.",
-    "founder": {
-      "name": "Неизвестно",
-      "image": ""
-    },
-    "cars": [
-      {
-        "name": "Atom",
-        "image": "/images/mercedes/atom.jpg"
-      }
-    ]
-  },
-  {
     "imagePath": "/icons/audi.svg",
     "name": "Audi",
     "history": "Audi была основана в 1909 году в Германии и стала одним из ведущих производителей автомобилей премиум-класса. Слоган компании \"Vorsprung durch Technik\" отражает её приверженность технологиям и инновациям.",
@@ -191,10 +176,6 @@
       {
         "name": "Jaguar F-Type",
         "image": "/images/jaguar/JaguarF-Type.jpg"
-      },
-      {
-        "name": "Jaguar I-PACE",
-        "image": "/images/jaguar/JaguarI-PACE.jpg"
       }
     ]
   },
