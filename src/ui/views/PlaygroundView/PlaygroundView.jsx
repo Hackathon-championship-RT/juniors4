@@ -81,6 +81,9 @@ export default function PlaygroundView({
     Array(side * side).fill(generatedPlayground.length - 1)
   );
   const [shownItems, setShownItems] = useState(Array(side * side).fill(true));
+  const [progressBarWidth, setProgressBarWidth] = useState(
+    ((closed + 2) / (side * side * generatedPlayground.length)) * 100
+  );
 
   const handleCloseModal = () => {
     const modalOverlay = document.querySelector(".modal-overlay");
@@ -239,6 +242,26 @@ export default function PlaygroundView({
         </h2>
       </div>
 
+      <div style={{ width: "100%", marginTop: "10px", marginBottom: "20px" }}>
+        <div
+          style={{
+            height: "10px",
+            backgroundColor: "#e0e0e0",
+            borderRadius: "5px",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              width: `${progressBarWidth}%`,
+              height: "100%",
+              backgroundColor: "var(--purple)",
+              transition: "width 0.3s ease-in-out",
+            }}
+          ></div>
+        </div>
+      </div>
+
       <div className="playground-container" style={gridStyle}>
         {Array.from({ length: side * side }).map((_, index) => (
           <div
@@ -261,6 +284,11 @@ export default function PlaygroundView({
 
                 if (current === selected2) {
                   setCorrectCount(correctCount + 1);
+                  setProgressBarWidth(
+                    ((closed + 2) /
+                      (side * side * generatedPlayground.length)) *
+                      100
+                  );
                   if (
                     eduMode &&
                     closed < side * side * generatedPlayground.length - 2
@@ -333,6 +361,7 @@ export default function PlaygroundView({
               } else {
                 setIsSelected(index);
               }
+
               setCurrentScore(calculateScore(correctCount, incorrectCount));
             }}
           >
