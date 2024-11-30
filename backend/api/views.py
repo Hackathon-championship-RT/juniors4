@@ -53,14 +53,18 @@ def put_data(request):
                 {"error": "Invalid token"},
                 status=rest_framework.status.HTTP_401_UNAUTHORIZED
             )
-
-        try:
-            leaderboard = api.models.LeaderboardModel.objects.filter(level=serializer.data["level"]).get(gamer=gamer)
+        queryset = api.models.LeaderboardModel.objects.filter(level=serializer.data["level"])
+        ids = []
+        for leaderboard in queryset.all():
+            ids.append(leaderboard.gamer.token)
+        if gamer.token in ids:
+            leaderboard = queryset.get(gamer__token=gamer.token)
+            leaderboard = api.models.LeaderboardModel.objects.filter(level=serializer.data["level"]).get(gamer_id=gamer.id)
             score_time = serializer.data["score"]
             if leaderboard.score > score_time:
                 leaderboard.score = serializer.data["score"]
                 leaderboard.save()
-        except api.models.LeaderboardModel.DoesNotExist:
+        else:
             leaderboard = api.models.LeaderboardModel.objects.create(
                 score=serializer.data["score"],
                 level=serializer.data["level"],
