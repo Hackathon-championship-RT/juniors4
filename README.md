@@ -6,7 +6,7 @@
 
 Вы можете протестировать на своем устройстве, развернув приложение локально или перейдя по ссылке https://mahjong.mustafin.online/
 
-Также доступно видео с демонстрацией работы приложения - https://drive.google.com/file/d/14uVChQroixnNoOgig4xHAvA5FKykSKIn/view?usp=sharing
+Также доступно видео с демонстрацией работы приложения(Git не позволяет загружать большие файлы) - https://drive.google.com/file/d/14uVChQroixnNoOgig4xHAvA5FKykSKIn/view?usp=sharing
 
 ## Инструкция по запуску React
 
@@ -17,6 +17,8 @@
 5. Введите "npm install"
 6. Введите "npm run dev"
 7. Эта команда запускает Vite сервер разработки, и вы увидите сообщение, что проект запущен, а также порт для подключения.
+
+### !!! Если хотите использовать локальный бекенд укажите в public/config/api_config "baseUrl": "http://localhost:8000/api/". По умолчанию используется глобальная ссылка.
 
 ## Инструкция по запуску Django
 
