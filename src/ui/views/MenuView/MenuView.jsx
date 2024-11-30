@@ -3,8 +3,8 @@ import "./MenuView.css";
 import { getMinScore } from "../../../domain/calculate";
 
 export default function MenuView({ onDifficultyChange, onStart }) {
-  const minScore = getMinScore();
   const [difficulty, setDifficulty] = useState(5);
+  const minScore = getMinScore(difficulty);
 
   return (
     <div className="menu-container">
@@ -15,6 +15,8 @@ export default function MenuView({ onDifficultyChange, onStart }) {
         <span className="max-score-title">МИНИМАЛЬНОЕ ВРЕМЯ</span>
         <span className="max-score">{minScore}</span>
       </div>
+
+      <div></div>
 
       <div className="difficulty-container" style={{ width: "100%" }}>
         <label htmlFor="difficulty" className="difficulty-label">

@@ -2,14 +2,16 @@ import { useState } from "react";
 import "./FinishView.css";
 import { getMinScore } from "../../../domain/calculate";
 
-export default function FinishView({ score, restart, openMenu }) {
-  const minScore = getMinScore();
+export default function FinishView({ score, restart, openMenu, level }) {
+  const minScore = getMinScore(level);
   return (
     <div className="finish-container">
       <div className="max-score-block">
         <span className="max-score-title">МИНИМАЛЬНОЕ ВРЕМЯ</span>
         <span className="max-score">{minScore}</span>
       </div>
+
+      <div></div>
 
       <div className="score-block">
         <span className="score-title">Результат</span>

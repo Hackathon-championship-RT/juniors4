@@ -2,6 +2,7 @@ import "./CardView.css";
 
 export default function CardView({
   card,
+  level,
   isSelected,
   isError,
   isAccepted,

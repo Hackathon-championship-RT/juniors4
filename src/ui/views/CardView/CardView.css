@@ -1,4 +1,5 @@
 .card-root {
+  position: relative;
   width: 100%;
   height: 100%;
   background-color: var(--secondary-background-color);
@@ -17,7 +18,6 @@
   max-height: 70%;
   pointer-events: none;
   user-select: none; 
-  user-drag: none; 
 }
 
 .card-root.selected {

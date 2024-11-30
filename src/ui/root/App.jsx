@@ -30,7 +30,7 @@ export default function App() {
         <PlaygroundView
           generatedPlayground={generatedPlayground}
           onFinish={(score) => {
-            updateMinScore(score);
+            updateMinScore(score, difficulty);
             setFinalScore(score);
             setStage(2);
           }}
@@ -45,6 +45,7 @@ export default function App() {
           openMenu={() => {
             setStage(0);
           }}
+          level={difficulty}
         />
       )}
     </>

@@ -12,14 +12,14 @@ export function calculateScore(correctAnswers, wrongAnswers) {
   return totalScore;
 }
 
-export function updateMinScore(score) {
-  const currentMinScore = getMinScore();
+export function updateMinScore(score, level) {
+  const currentMinScore = getMinScore(level);
   if (currentMinScore === null || score < currentMinScore) {
-    localStorage.setItem("minScore", score.toString());
+    localStorage.setItem("minScore" + level, score.toString());
   }
 }
 
-export function getMinScore() {
-  const storedScore = localStorage.getItem("minScore");
+export function getMinScore(level) {
+  const storedScore = localStorage.getItem("minScore" + level);
   return storedScore !== null ? parseFloat(storedScore) : null;
 }
