@@ -2,9 +2,14 @@ import "./PlaygroundView.css";
 import CardView from "../CardView/CardView";
 import cards from "../../../../public/config/cards_config.json";
 import { calculateScore } from "../../../domain/calculate";
+import { shufflePlayGround } from "../../../domain/shuffle";
 import { useState, useEffect } from "react";
 
-export default function PlaygroundView({ generatedPlayground, onFinish }) {
+export default function PlaygroundView({
+  generatedPlayground,
+  onFinish,
+  onGeneratedPlaydoundUpdate,
+}) {
   const [side, setSide] = useState(generatedPlayground[0].length);
   const [timer, setTimer] = useState(0);
   const [intervalId, setIntervalId] = useState(null);
@@ -51,7 +56,7 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
 
   const playgroundSize = Math.min(
     screenWidth - 100,
-    screenHeight - timerHeight - 140
+    screenHeight - timerHeight - 160
   );
 
   const gridStyle = {
@@ -90,12 +95,59 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
 
   useEffect(() => {
     if (showModal) {
-      // Добавляем класс show для плавного появления
       const modalOverlay = document.querySelector(".modal-overlay");
       const modalWindow = document.querySelector(".modal-window");
       modalOverlay?.classList.add("show");
     }
   }, [showModal]);
+
+  function shufflePlayground2() {
+    let newMatrix = [];
+    for (let i = 0; i < generatedPlayground.length; i++) {
+      newMatrix.push([]);
+      for (let j = 0; j < side; j++) {
+        newMatrix[i].push([]);
+        for (let k = 0; k < side; k++) {
+          const element = generatedPlayground[i][j][k];
+          if (i <= positions[j * side + k] && shownItems[j * side + k]) {
+            newMatrix[i][j].push(element);
+          } else {
+            newMatrix[i][j].push(null);
+          }
+        }
+      }
+    }
+
+    let res = shufflePlayGround(newMatrix, side);
+
+    let newPos = Array(side * side).fill(generatedPlayground.length - 1);
+    for (let i = generatedPlayground.length - 1; i >= 0; i--) {
+      for (let j = 0; j < side; j++) {
+        for (let k = 0; k < side; k++) {
+          if (res[i][j][k] == null) {
+            newPos[j * side + k] = i - 1;
+          }
+
+          if (newPos[j * side + k] < 0) {
+            setShownItems((prev) => {
+              const updated = [...prev];
+              updated[j * side + k] = false;
+              return updated;
+            });
+          } else {
+            setShownItems((prev) => {
+              const updated = [...prev];
+              updated[j * side + k] = true;
+              return updated;
+            });
+          }
+        }
+      }
+    }
+
+    setPositions(newPos);
+    onGeneratedPlaydoundUpdate(res);
+  }
 
   return (
     <div
@@ -287,10 +339,10 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
             <CardView
               card={
                 cards[
-                  generatedPlayground[positions[index]][
+                  generatedPlayground[Math.max(0, positions[index])][
                     Math.floor(index / side)
                   ][index % side]
-                ]
+                ] || cards[0]
               }
               isSelected={selected === index}
               isError={error === index}
@@ -322,6 +374,13 @@ export default function PlaygroundView({ generatedPlayground, onFinish }) {
           </span>
         </label>
       </div>
+
+      <button
+        style={{ marginTop: "10px" }}
+        onClick={() => shufflePlayground2()}
+      >
+        Пермешать
+      </button>
     </div>
   );
 }

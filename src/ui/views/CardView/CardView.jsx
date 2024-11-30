@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./CardView.css";
 
 export default function CardView({

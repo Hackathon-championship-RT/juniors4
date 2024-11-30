@@ -34,6 +34,9 @@ export default function App() {
             setFinalScore(score);
             setStage(2);
           }}
+          onGeneratedPlaydoundUpdate={(it) => {
+            setGneratedPlayground(it);
+          }}
         />
       ) : (
         <FinishView

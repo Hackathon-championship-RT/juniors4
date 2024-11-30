@@ -38,7 +38,6 @@ export function generatePlacement(difficulty) {
   for (let i = 0; i < 3; i++) {
     fullGrid.push(generateGrid(duplicatedIndexes));
   }
-  console.log(fullGrid);
 
   return fullGrid;
 }
