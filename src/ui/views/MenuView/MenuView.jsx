@@ -3,7 +3,7 @@ import "./MenuView.css";
 import { getMinScore } from "../../../domain/calculate";
 
 export default function MenuView({ onDifficultyChange, onStart }) {
-  const [difficulty, setDifficulty] = useState(5);
+  const [difficulty, setDifficulty] = useState(2);
   const minScore = getMinScore(difficulty);
 
   return (

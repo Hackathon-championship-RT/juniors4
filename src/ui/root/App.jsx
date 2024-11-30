@@ -7,7 +7,7 @@ import FinishView from "../views/finishView/FinishView";
 import { useEffect, useState } from "react";
 
 export default function App() {
-  const [difficulty, setDifficulty] = useState(5);
+  const [difficulty, setDifficulty] = useState(2);
 
   const [finalScore, setFinalScore] = useState(0);
 
