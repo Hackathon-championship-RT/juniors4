@@ -11,16 +11,14 @@ class GamerSerializer(rest_framework.serializers.ModelSerializer):
 
 
 class LeaderboardSerializer(rest_framework.serializers.ModelSerializer):
+    gamer = rest_framework.serializers.PrimaryKeyRelatedField(queryset=api.models.GamerModel.objects.all(), required=False)
     username = rest_framework.serializers.SerializerMethodField()
-
     class Meta(object):
         model = api.models.LeaderboardModel
-        fields = ['score', 'timestamp', 'level', 'username']
+        fields = ['score', 'timestamp', 'level', 'username', 'gamer']
 
     def get_username(self, obj):
         try:
-            if obj.gamer.exists():
-                return obj.gamer.first().username
-            return None
+            return obj.gamer.username if obj.gamer else None
         except Exception:
             return None
