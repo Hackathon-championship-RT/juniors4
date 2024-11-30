@@ -60,7 +60,7 @@
       },
       {
         "name": "Lamborghini Huracán",
-        "image": "images/lamborgini/LamborghiniHuracán.jpg"
+        "image": "/images/lamborgini/LamborghiniHuracán.jpg"
       },
       {
         "name": "Lamborghini Urus",
@@ -88,6 +88,136 @@
       {
         "name": "Mercedes-Benz GLC",
         "image": "/images/mercedes/Mercedes-BenzGLC.jpg"
+      }
+    ]
+  },
+  {
+    "imagePath": "/icons/atom.png",
+    "name": "Атом",
+    "history": "Бренд \"Атом\" был создан как символ российских инноваций в автомобилестроении, с акцентом на экологичные и современные технологии. Компания разрабатывает как электромобили, так и автомобили на альтернативных источниках энергии.",
+    "founder": {
+      "name": "Неизвестно",
+      "image": ""
+    },
+    "cars": [
+      {
+        "name": "Atom",
+        "image": "/images/mercedes/atom.jpg"
+      }
+    ]
+  },
+  {
+    "imagePath": "/icons/audi.svg",
+    "name": "Audi",
+    "history": "Audi была основана в 1909 году в Германии и стала одним из ведущих производителей автомобилей премиум-класса. Слоган компании \"Vorsprung durch Technik\" отражает её приверженность технологиям и инновациям.",
+    "founder": {
+      "name": "Август Хорьх",
+      "image": "/images/audi/audi.jpg"
+    },
+    "cars": [
+      {
+        "name": "Audi A4",
+        "image": "/images/audi/AudiA4.jpg"
+      },
+      {
+        "name": "Audi Q7",
+        "image": "/images/audi/AudiQ7.jpg"
+      },
+      {
+        "name": "Audi R8",
+        "image": "/images/audi/AudiR8.jpg"
+      }
+    ]
+  },
+  {
+    "imagePath": "/icons/bmw.svg",
+    "name": "BMW",
+    "history": "BMW была основана в 1916 году в Германии и является одной из самых известных автомобильных компаний в мире. Она знаменита производством автомобилей и мотоциклов, которые сочетают в себе спортивный стиль и высокие технологии.",
+    "founder": {
+      "name": "Карл Рапп",
+      "image": "/images/bmw/bmw.jpg"
+    },
+    "cars": [
+      {
+        "name": "BMW 3 Series",
+        "image": "/images/bmw/BMW3Series.jpg"
+      },
+      {
+        "name": "BMW X5",
+        "image": "/images/bmw/BMWX5.jpg"
+      },
+      {
+        "name": "BMW i8",
+        "image": "/images/bmw/BMWi8.jpg"
+      }
+    ]
+  },
+  {
+    "imagePath": "/icons/ford.svg",
+    "name": "Ford",
+    "history": "Ford была основана в 1903 году Генри Фордом в США. Компания сыграла ключевую роль в создании массового производства автомобилей благодаря модели T и движется к будущему с электромобилями.",
+    "founder": {
+      "name": "Генри Форд",
+      "image": "/images/ford/ford.jpg"
+    },
+    "cars": [
+      {
+        "name": "Ford Mustang",
+        "image": "/images/ford/FordMustang.jpg"
+      },
+      {
+        "name": "Ford Explorer",
+        "image": "/images/ford/FordExplorer.jpg"
+      },
+      {
+        "name": "Ford F-150",
+        "image": "/images/ford/FordF-150.jpg"
+      }
+    ]
+  },
+  {
+    "imagePath": "/icons/jaguar.svg",
+    "name": "Jaguar",
+    "history": "Jaguar была основана в 1935 году в Великобритании и славится своими элегантными и высокопроизводительными автомобилями. Бренд продолжает предлагать инновационные технологии и стиль.",
+    "founder": {
+      "name": "Уильям Лайонс",
+      "image": "/images/jaguar/jaguar.jpg"
+    },
+    "cars": [
+      {
+        "name": "Jaguar XF",
+        "image": "/images/jaguar/JaguarXF.jpg"
+      },
+      {
+        "name": "Jaguar F-Type",
+        "image": "/images/jaguar/JaguarF-Type.jpg"
+      },
+      {
+        "name": "Jaguar I-PACE",
+        "image": "/images/jaguar/JaguarI-PACE.jpg"
+      }
+    ]
+  },
+  {
+    "imagePath": "/icons/tesla.svg",
+    "name": "Tesla",
+    "history": "Tesla была основана в 2003 году в США и стала пионером в области электромобилей. Компания известна своими инновациями, автономным управлением и экологически чистыми решениями.",
+    "founder": {
+      "name": "Илон Маск",
+      "image": "/images/tesla/tesla.jpg"
+    },
+    "cars": [
+      {
+        "name": "Tesla Model S",
+        "image": "/images/tesla/TeslaModelS.jpg"
+      },
+      {
+        "name": "Tesla Model X",
+        "image": "/images/tesla/TeslaModelX.jpg"
+      },
+      {
+        "name": "Tesla Model 3",
+        "image": "/images/tesla/TeslaModel3.jpg"
       }
     ]
   }
