@@ -37,6 +37,7 @@ export default function App() {
           onGeneratedPlaydoundUpdate={(it) => {
             setGneratedPlayground(it);
           }}
+          onExit={() => setStage(0)}
         />
       ) : (
         <FinishView

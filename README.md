@@ -2,6 +2,12 @@
 
 Игра “Маджонг”, где вместо традиционных символов используются логотипы автомобильных брендов. Она объединит развлечение, развитие памяти и внимательности, а также позволит игрокам познакомиться с миром автомобильной индустрии.
 
+## Демо
+
+Вы можете протестировать на своем устройстве, развернув приложение локально или перейдя по ссылке https://mahjong.mustafin.online/
+
+Также доступно видео с демонстрацией работы приложения - https://drive.google.com/file/d/14uVChQroixnNoOgig4xHAvA5FKykSKIn/view?usp=sharing
+
 ## Инструкция по запуску React
 
 1. Убедитесь что у вас установленный node.js и npm
@@ -16,18 +22,18 @@
 
 1. Убедитесь что у вас установленный python и pip
 2. Загрузите и активируйте виртуальное окружение
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    pip3 install -r requirements.txt
-    ```
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   pip3 install -r requirements.txt
+   ```
 3. Применение миграций
-    ```bash
-    cd backend
-    python3 manage.py makemigrations
-    python3 manage.py migrate
-    ```
+   ```bash
+   cd backend
+   python3 manage.py makemigrations
+   python3 manage.py migrate
+   ```
 4. Запуск сервера
-    ```bash
-    python3 manage.py runserver
-    ```
+   ```bash
+   python3 manage.py runserver
+   ```

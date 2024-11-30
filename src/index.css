@@ -18,10 +18,9 @@ html, body {
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   --background-color: #1e1e1e;
-  --secondary-background-color: #2d2d2d;
+  --secondary-background-color: #2d2d2ddc;
   --text-color: #f3f3f3;
   --green: #5cffa6;
   --red: #ff5c5c;
@@ -32,6 +31,28 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --checkbox-color: #955cff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(45deg, #40604f, #51426d, #6f3c3c, #62633a);
+  background-size: 400% 400%;
+  animation: gradientAnimation 60s ease infinite;
+  color: var(--text-color);
+}
+
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 #root {
@@ -74,7 +95,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #2d2d2ddc;
   cursor: pointer;
   transition: border-color 0.25s;
 }

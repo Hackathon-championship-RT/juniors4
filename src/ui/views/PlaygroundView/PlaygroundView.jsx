@@ -9,6 +9,7 @@ export default function PlaygroundView({
   generatedPlayground,
   onFinish,
   onGeneratedPlaydoundUpdate,
+  onExit,
 }) {
   const [side, setSide] = useState(generatedPlayground[0].length);
   const [timer, setTimer] = useState(0);
@@ -412,6 +413,13 @@ export default function PlaygroundView({
       >
         Пермешать
       </button>
+
+      <span
+        style={{ position: "absolute", top: "20px", right: "20px" }}
+        onClick={() => onExit()}
+      >
+        Завершить игру
+      </span>
     </div>
   );
 }
