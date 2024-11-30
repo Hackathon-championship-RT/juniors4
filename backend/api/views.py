@@ -7,8 +7,6 @@ import rest_framework.response
 import rest_framework.authtoken
 import rest_framework.permissions
 
-import django.contrib.auth.models
-
 import datetime
 
 import api.models
@@ -23,29 +21,6 @@ def testview(request):
         {"imagePath": "/icons/lamborgini.svg"},
         {"imagePath": "/icons/mercedes.svg"}
     ])
-
-
-@rest_framework.decorators.api_view(["POST"])
-def login(request):
-    serializer = api.serializers.UserSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        user = django.contrib.auth.models.User.objects.get(
-            username=serializer.data["username"],
-        )
-        user.set_password(serializer.data["password"])
-        user.save()
-        token = rest_framework.authtoken.models.Token.objects.create(user=user)
-        return rest_framework.response.Response(
-            {
-                "token": token.key,
-                "user": serializer.data,
-            }
-        )
-
-    return rest_framework.response.Response(
-        serializer.errors, status=rest_framework.status.HTTP_400_BAD_REQUEST,
-    )
 
 
 @rest_framework.decorators.api_view(["POST"])
