@@ -56,7 +56,7 @@ export default function PlaygroundView({
 
   const playgroundSize = Math.min(
     screenWidth - 100,
-    screenHeight - timerHeight - 160
+    screenHeight - timerHeight - 250
   );
 
   const gridStyle = {
@@ -105,6 +105,8 @@ export default function PlaygroundView({
   }, [showModal]);
 
   function shufflePlayground2() {
+    setIsSelected(null);
+    setPairFound(null);
     let newMatrix = [];
     for (let i = 0; i < generatedPlayground.length; i++) {
       newMatrix.push([]);
